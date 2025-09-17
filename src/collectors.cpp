@@ -1,5 +1,7 @@
 #include "systempulse/collectors.h"
 
+#include <algorithm>
+
 namespace systempulse {
 
 // ---------------------------------------------------------------- CpuCollector
