@@ -23,6 +23,7 @@ public:
     void join();
     bool running() const { return started_ && !joined_; }
     const std::string& name() const { return name_; }
+    pthread_t native() const { return tid_; }
 
 private:
     static void* trampoline(void* arg);

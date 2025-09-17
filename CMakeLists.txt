@@ -20,6 +20,12 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 add_library(systempulse_core
   src/metrics.cpp
   src/proc_parser.cpp
+  src/sync.cpp
+  src/thread.cpp
+  src/collector.cpp
+  src/collectors.cpp
+  src/csv_writer.cpp
+  src/monitor.cpp
 )
 target_include_directories(systempulse_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(systempulse_core PUBLIC Threads::Threads)
