@@ -33,6 +33,16 @@ add_library(systempulse_core
 target_include_directories(systempulse_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(systempulse_core PUBLIC Threads::Threads)
 
+target_compile_definitions(systempulse_core PUBLIC SYSTEMPULSE_VERSION="${PROJECT_VERSION}")
+
+add_executable(systempulse src/main.cpp)
+target_link_libraries(systempulse PRIVATE systempulse_core)
+
+add_executable(pulse_worker tools/pulse_worker.cpp)
+target_link_libraries(pulse_worker PRIVATE Threads::Threads)
+
+install(TARGETS systempulse pulse_worker RUNTIME DESTINATION bin)
+
 if(SYSTEMPULSE_BUILD_TESTS)
   enable_testing()
   add_executable(systempulse_tests
