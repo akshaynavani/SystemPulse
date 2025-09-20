@@ -26,6 +26,7 @@ add_library(systempulse_core
   src/collectors.cpp
   src/csv_writer.cpp
   src/monitor.cpp
+  src/process_collector.cpp
 )
 target_include_directories(systempulse_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(systempulse_core PUBLIC Threads::Threads)
