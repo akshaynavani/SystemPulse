@@ -49,6 +49,7 @@ if(SYSTEMPULSE_BUILD_TESTS)
     tests/test_main.cpp
     tests/test_proc_parser.cpp
     tests/test_queue.cpp
+    tests/test_options.cpp
   )
   target_link_libraries(systempulse_tests PRIVATE systempulse_core)
   add_test(NAME systempulse_tests COMMAND systempulse_tests)
