@@ -25,7 +25,7 @@ done
 
 require_cmd cmake
 log "configuring ($build_type) in $SP_BUILD_DIR"
-cmake -S "$SP_ROOT" -B "$SP_BUILD_DIR" -DCMAKE_BUILD_TYPE="$build_type" "${extra_flags[@]}"
+cmake -S "$SP_ROOT" -B "$SP_BUILD_DIR" -DCMAKE_BUILD_TYPE="$build_type" ${extra_flags[@]+"${extra_flags[@]}"}
 
 log "building"
 cmake --build "$SP_BUILD_DIR" -j "$(nproc_portable)"
