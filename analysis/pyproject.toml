@@ -1,0 +1,16 @@
+[project]
+name = "systempulse-analysis"
+version = "0.1.0"
+description = "Time-series analysis pipeline for SystemPulse CSV output"
+requires-python = ">=3.9"
+dependencies = ["pandas>=1.5", "numpy>=1.23", "matplotlib>=3.6"]
+
+[project.scripts]
+systempulse-analysis = "systempulse_analysis.cli:main"
+
+[tool.setuptools]
+packages = ["systempulse_analysis"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
