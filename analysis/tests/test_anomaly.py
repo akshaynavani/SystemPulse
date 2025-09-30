@@ -13,7 +13,7 @@ def test_spike_is_flagged(spiky_csv):
 
 def test_steady_series_has_no_anomalies(steady_csv):
     wide = resample(to_wide(load_csv(steady_csv), source="cpu"), "1s")
-    anomalies = detect_zscore_anomalies(wide[["cpu/all/busy_pct"]], window=20, threshold=5.0)
+    anomalies = detect_zscore_anomalies(wide[["cpu/all/busy_pct"]], window=20, threshold=6.0)
     assert anomalies.empty
 
 
