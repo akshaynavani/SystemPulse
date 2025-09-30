@@ -55,6 +55,7 @@ void sleepMs(long ms) {
 }
 
 std::atomic<uint64_t> g_sink{0};
+std::atomic<int> g_ioThreadSeq{0};
 
 // Busy-spins for cpuLoad% of every 100ms period.
 void* cpuWorker(void* arg) {
@@ -107,8 +108,8 @@ void* memWorker(void* arg) {
 void* ioWorker(void* arg) {
     const Config& cfg = *static_cast<Config*>(arg);
     char path[512];
-    std::snprintf(path, sizeof(path), "%s/pulse_worker_%d_%lu.dat", cfg.ioDir.c_str(),
-                  static_cast<int>(getpid()), static_cast<unsigned long>(pthread_self() & 0xffff));
+    std::snprintf(path, sizeof(path), "%s/pulse_worker_%d_%d.dat", cfg.ioDir.c_str(),
+                  static_cast<int>(getpid()), g_ioThreadSeq.fetch_add(1));
     std::vector<char> buf(1 << 20);
     for (size_t i = 0; i < buf.size(); ++i) buf[i] = static_cast<char>(i * 31);
 

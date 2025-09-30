@@ -12,7 +12,10 @@ using namespace systempulse;
 TEST(queue_fifo_order) {
     BoundedQueue<int> q(8);
     for (int i = 0; i < 5; ++i) q.push(i);
-    for (int i = 0; i < 5; ++i) EXPECT_EQ(*q.pop(), i);
+    for (int i = 0; i < 5; ++i) {
+        const int v = q.pop().value();
+        EXPECT_EQ(v, i);
+    }
     EXPECT_FALSE(q.tryPop().has_value());
 }
 
@@ -21,7 +24,8 @@ TEST(queue_drop_oldest_when_full) {
     for (int i = 0; i < 5; ++i) q.push(i);
     EXPECT_EQ(q.size(), size_t{3});
     EXPECT_EQ(q.dropped(), size_t{2});
-    EXPECT_EQ(*q.pop(), 2);
+    const int oldest = q.pop().value();
+    EXPECT_EQ(oldest, 2);
 }
 
 TEST(queue_close_unblocks_consumer) {
