@@ -1,0 +1,35 @@
+# CMake / C++ build output
+build/
+build-*/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+*.o
+*.a
+*.so
+*.out
+
+# Benchmark output
+results/
+report/
+*.csv
+!analysis/tests/fixtures/*.csv
+pulse_worker_*.dat
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Local environment
+.env
